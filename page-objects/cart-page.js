@@ -10,7 +10,7 @@ class CartPage {
     }
 
     async goToCheckout() {
-        return this.page.locator(this.checkoutButton).click();
+        await this.page.locator(this.checkoutButton).click();
     }
 }
 

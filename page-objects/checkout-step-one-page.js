@@ -14,7 +14,7 @@ class CheckoutStepOnePage {
     }
 
     async continue() {
-        return this.page.locator(this.continueButton).click();
+        await this.page.locator(this.continueButton).click();
     }
 }
 

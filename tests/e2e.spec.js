@@ -12,25 +12,24 @@ test.describe(' Автоматизация E2E сценария покупки �
     // Создаем тест-кейс
     test('Сквозной сценарий', async ({ page }) => {
         // 1. Открыть страницу логина
-
-        const loginPage = new LoginPage(page);
-
+        const loginPage = new LoginPage(page);  
+        const inventoryPage = new InventoryPage(page);
+        const cartPage = new CartPage(page);
+        const checkoutStepOnePage = new CheckoutStepOnePage(page); 
+        const checkoutStepTwoPage = new CheckoutStepTwoPage(page);
+        const checkoutCompletePage = new CheckoutCompletePage(page);
         await loginPage.open();
 
-        const isLoginButtonVisible = await page.isVisible(loginPage.loginButton);
-        const isLoginFieldVisible = await page.isVisible(loginPage.usernameInput);
-        const isPasswordFieldVisible = await page.isVisible(loginPage.passwordInput);
+        await expect(page.locator(loginPage.usernameInput)).toBeVisible();
 
-        expect(isLoginButtonVisible).toBeTruthy();
-        expect(isLoginFieldVisible).toBeTruthy();
-        expect(isPasswordFieldVisible).toBeTruthy();
+        await expect(page.locator(loginPage.loginButton)).toBeVisible();
+
+        await expect(page.locator(loginPage.passwordInput)).toBeVisible();
 
         // 2. Залогиниться, используя валидные данные
         await loginPage.login('standard_user', 'secret_sauce');
 
         // 3. Убедиться, что после логина открылась страница с товарами
-        const inventoryPage = new InventoryPage(page);
-
         const pageTitle = await inventoryPage.getPageTitle();
         expect(pageTitle).toBe('Products');
 
@@ -44,8 +43,6 @@ test.describe(' Автоматизация E2E сценария покупки �
         await inventoryPage.goToCartPage();
 
         // 6. Проверить, что в корзине находится именно тот товар, который вы добавили.
-        const cartPage = new CartPage(page);
-
         const firstCartItemTitle = await cartPage.getFirstItemTitle();
         expect(firstCartItemTitle).toEqual(firstItemTitle);
 
@@ -53,18 +50,15 @@ test.describe(' Автоматизация E2E сценария покупки �
         await cartPage.goToCheckout();
 
         // 8. Заполнить информацию о пользователе
-        const checkoutStepOnePage = new CheckoutStepOnePage(page);
         await checkoutStepOnePage.fillUserInfo('Test', 'User', '12345');
 
         // 9. Продолжить оформление заказа (нажать "Continue").
         await checkoutStepOnePage.continue();
 
         // 10. Завершить покупку (нажать "Finish").
-        const checkoutStepTwoPage = new CheckoutStepTwoPage(page);
-        await checkoutStepTwoPage.finishCheckout();
+         await checkoutStepTwoPage.finishCheckout();
 
         // 11. Убедиться, что заказ успешно оформлен
-        const checkoutCompletePage = new CheckoutCompletePage(page);
         const message = await checkoutCompletePage.getCompletionMessage();
         expect(message).toEqual('Thank you for your order!')
 

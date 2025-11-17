@@ -11,7 +11,7 @@ class InventoryPage {
     }
 
     async addFirstItemToCart() {
-        return this.page.locator(this.addToCartButton).first().click();
+        await this.page.locator(this.addToCartButton).first().click();
     }
 
     async openCart() {
@@ -31,7 +31,7 @@ class InventoryPage {
     }
 
     async goToCartPage() {
-        return this.page.locator(this.goToCartButton).click();
+        await this.page.locator(this.goToCartButton).click();
     }
 }
 

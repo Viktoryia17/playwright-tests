@@ -5,7 +5,7 @@ class CheckoutStepTwoPage {
     }
 
     async finishCheckout() {
-        return this.page.locator(this.finishButton).click();
+        await this.page.locator(this.finishButton).click();
     }
 }
 
