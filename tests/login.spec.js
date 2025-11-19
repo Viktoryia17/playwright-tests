@@ -8,7 +8,7 @@ const { resolve } = require('path');
 test.describe('Авторизация на Sauce Demo', () => {
 
     // Создаем тест-кейс
-    test('Пользователь должен успешно войти в систему', async ({ page }) => {
+    test('[@ui] Пользователь должен успешно войти в систему', async ({ page }) => {
         // 1. Переходим на страницу
         await page.goto('https://www.saucedemo.com/');
 
@@ -35,7 +35,7 @@ test.describe('Авторизация на Sauce Demo', () => {
     });
 
     // Создаем второй тест-кейс
-    test('Пользователь должен не успешно войти в систему', async ({ page }) => {
+    test('[@ui] Пользователь должен не успешно войти в систему', async ({ page }) => {
         // 1. Переходим на страницу
         await page.goto('https://www.saucedemo.com/');
 

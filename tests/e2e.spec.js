@@ -10,7 +10,7 @@ const { CheckoutCompletePage } = require('../page-objects/checkout-complete-page
 // Описываем наш набор тестов
 test.describe(' Автоматизация E2E сценария покупки с использование паттерна Page Object Model', () => {
     // Создаем тест-кейс
-    test('Сквозной сценарий', async ({ page }) => {
+    test('[@ui] Сквозной сценарий', async ({ page }) => {
         // 1. Открыть страницу логина
         const loginPage = new LoginPage(page);  
         const inventoryPage = new InventoryPage(page);

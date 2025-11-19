@@ -20,7 +20,7 @@ test.describe('API-тесты для Restful-booker', () => {
             additionalneeds: "Breakfast"
         };
 
-    test('Создание бронирования (Create - POST)', async ({ request }) => {
+    test('[@api] Создание бронирования (Create - POST)', async ({ request }) => {
         // Отправляем POST-запрос
         const response = await request.post(`${baseURL}/booking`, {
             data: booking
@@ -42,7 +42,7 @@ test.describe('API-тесты для Restful-booker', () => {
         expect(responseBody.booking).toEqual(booking);
     });
 
-    test('Получение бронирований ID', async ({ request }) => {
+    test('[@api] Получение бронирований ID', async ({ request }) => {
         // Отправляем GET-запрос
         const response = await request.get(`${baseURL}/booking/${bookingid}`);
 
@@ -55,7 +55,7 @@ test.describe('API-тесты для Restful-booker', () => {
         expect(responseBody).toEqual(booking);
     });
 
-    test('Обновление бронирования', async ({ request }) => {
+    test('[@api] Обновление бронирования', async ({ request }) => {
         // Отправляем POST-запрос
         const authResponse = await request.post(`${baseURL}/auth`, {
             data: {
@@ -86,7 +86,7 @@ test.describe('API-тесты для Restful-booker', () => {
         expect(body).toEqual(booking);
     });
 
-    test('Удаление бронирования', async ({ request }) => {
+    test('[@api] Удаление бронирования', async ({ request }) => {
         const updateResponse = await request.delete(`${baseURL}/booking/${bookingid}`, {
             headers: {
                 Cookie: `token=${token}`
